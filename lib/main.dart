@@ -11,15 +11,15 @@ void main() {
 
 class SymlophoneApp extends StatelessWidget {
 
-  Color mainThemeColor = Color(0xff393e46);
-  Color subThemeColor = Color(0xffeeeeee);
+  static const Color mainThemeColor = Color(0xff393e46);
+  static const Color subThemeColor = Color(0xffeeeeee);
 
   void playKey(int keyNo) {
     final player = AudioCache();
     player.play('audio/note$keyNo.wav');
   }
 
-  Widget keyButton(int keyNo, String keyName, Color keyColor, Color textColor) {
+  Widget keyButton({int keyNo=0, String keyName='', Color keyColor=mainThemeColor, Color textColor=subThemeColor}) {
     return Expanded(child:Padding(
       padding: const EdgeInsets.fromLTRB(0, 3, 0, 0),
       child: ElevatedButton(
@@ -53,14 +53,15 @@ class SymlophoneApp extends StatelessWidget {
     return Scaffold(
       body: Container(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            keyButton(1, 'C', mainThemeColor, subThemeColor),
-            keyButton(2, 'D', subThemeColor, mainThemeColor),
-            keyButton(3, 'E', mainThemeColor, subThemeColor),
-            keyButton(4, 'F', subThemeColor, mainThemeColor),
-            keyButton(5, 'G', mainThemeColor, subThemeColor),
-            keyButton(6, 'A', subThemeColor, mainThemeColor),
-            keyButton(7, 'B', mainThemeColor, subThemeColor),
+            keyButton(keyNo: 1, keyName: 'C', keyColor: mainThemeColor, textColor: subThemeColor),
+            keyButton(keyNo: 2, keyName: 'D', keyColor: subThemeColor, textColor: mainThemeColor),
+            keyButton(keyNo: 3, keyName: 'E', keyColor: mainThemeColor, textColor: subThemeColor),
+            keyButton(keyNo: 4, keyName: 'F', keyColor: subThemeColor, textColor: mainThemeColor),
+            keyButton(keyNo: 5, keyName: 'G', keyColor: mainThemeColor, textColor: subThemeColor),
+            keyButton(keyNo: 6, keyName: 'A', keyColor: subThemeColor, textColor: mainThemeColor),
+            keyButton(keyNo: 7, keyName: 'B', keyColor: mainThemeColor, textColor: subThemeColor),
           ],
         ),
       ),
